@@ -1,17 +1,17 @@
 body {
     overflow: hidden;
-    width: 100%;
+    max-width: 1800px;
     background-image: url(./pixel_art_night_landscape_by_chelaphynx_dg39dc3.gif);
   }
   
-  .floor {
+  /* .floor {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 70px;
     background-image: url(https://img.freepik.com/premium-vector/seamless-texture-cartoon-grass-green-plants-pattern-for-wallpaper-illustration-backdrop-organic-background-for-the-game-gui_172107-1619.jpg);
-  }
+  } */
   
   .square {
     position: absolute;
