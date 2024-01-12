@@ -1,38 +1,152 @@
-body{
-    background-size: 1700px;
-    margin: 0;
-    overflow: hidden;
+body {
+  overflow: hidden;
+  max-width: 1800px;
+  background-image: url(./pixel_art_night_landscape_by_chelaphynx_dg39dc3.gif);
 }
 
-.floor {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 80px;
-  }
+/* .floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-image: url(https://img.freepik.com/premium-vector/seamless-texture-cartoon-grass-green-plants-pattern-for-wallpaper-illustration-backdrop-organic-background-for-the-game-gui_172107-1619.jpg);
+} */
 
-  
 .square {
-    position: absolute;
-    left: 49%;
-    bottom: 0px;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 120px;
-    background: url(klipartz.com.png) center center / cover;
-    border-radius: 30px;
-    transform-origin: bottom center;
-  }
+  position: absolute;
+  left: 5%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 60px;
+  background: url(./Vp3M.gif) center center / cover;
+  /* border-radius: 30px; */
+  transform-origin: bottom center;
 
-  .falling-object {
-    position: absolute;
-    width: 100px; height: 100px;
-    background-image: url(image-removebg-preview.png);
-    
-  }
+}
 
-  #container {
-    position: relative;
-    width: 100%;
-    height: 100%;
+
+/* .coin:nth-child(2) {
+  width: 50px;
+  height: 50px;
+    left: 200px;
+  position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url(./Fw3P.gif);
+    border-radius: 50%;
+    top: 900px;
+} */
+.coin:nth-child(3) {
+  width: 50px;
+  height: 50px;
+    left: 400px;
+  position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url(./Fw3P.gif) center center / cover;;
+    border-radius: 50%;
+    top: 800px;
+}
+.coin:nth-child(4) {
+  width: 50px;
+  height: 50px;
+    left: 600px;
+  position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url(./Fw3P.gif) center center / cover;;
+    border-radius: 50%;
+    top: 800px;
+}
+.coin:nth-child(5) {
+  width: 50px;
+  height: 50px;
+    left: 800px;
+  position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url(./Fw3P.gif) center center / cover;;
+    border-radius: 50%;
+    top: 800px;
+}
+.coin:nth-child(6) {
+  width: 50px;
+  height: 50px;
+    left: 1000px;
+  position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url(./Fw3P.gif) center center / cover;;
+    border-radius: 50%;
+    top: 800px;
+}
+.coin:nth-child(7) {
+  width: 50px;
+  height: 50px;
+    left: 1200px;
+  position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url(./Fw3P.gif) center center / cover;;
+    border-radius: 50%;
+    top: 800px;
+}
+
+#score {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 18px; /* Adjust the font size as needed */
+}
+
+#score-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-left: 5px; /* Adjust the spacing between "Score:" and the value */
+}
+/* body{
+  background-size: 1700px;
+  margin: 0;
+  overflow: hidden;
+} */
+
+/* .floor {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 80px;
+} */
+
+
+/* .square {
+  position: absolute;
+  left: 49%;
+  bottom: 0px;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 120px;
+  background: url(klipartz.com.png) center center / cover;
+  border-radius: 30px;
+  transform-origin: bottom center;
+} */
+
+.falling-object {
+  position: absolute;
+  width: 100px; height: 100px;
+  background-image: url(image-removebg-preview.png);
+
+}
+
+#container {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
