@@ -147,3 +147,21 @@ document.addEventListener("DOMContentLoaded", function () {
             spawnObjects();
         });
   
+        function checkIn() {
+          var object2 = document.getElementById('pers');
+          var object3 = document.getElementsByClassName('.fobject');
+          var rect1 = object2.getBoundingClientRect();
+          var rect2 = object3.getBoundingClientRect();
+      
+          if (
+            rect1.x = rect2.x &&
+            rect1.x + rect1.width > rect2.x &&
+            rect1.y < rect2.y + rect2.height &&
+            rect1.y + rect1.height > rect2.y
+          ) {
+            object2.style.display = 'none';
+          }
+          requestAnimationFrame(checkIn);
+  
+        }
+        checkIn();
