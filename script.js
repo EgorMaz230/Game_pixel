@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let tiltAngle = 15;
     let currentBottom = parseInt(getComputedStyle(square).bottom, 10);
     let score = 0;
+    
   
     function moveLeft() {
       let currentLeft = parseInt(getComputedStyle(square).left, 10);
@@ -30,10 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
   
     function checkPosition() {
       let squareRect = square.getBoundingClientRect();
-  
+    
       coins.forEach((coin) => {
         let coinRect = coin.getBoundingClientRect();
-  
+    
         if (
           squareRect.bottom >= coinRect.top &&
           squareRect.top <= coinRect.bottom &&
@@ -41,20 +42,48 @@ document.addEventListener("DOMContentLoaded", function () {
           squareRect.left <= coinRect.right &&
           coin.style.display !== "none"
         ) {
-          coin.style.display = "none";
-          score++;
-          scoreElement.textContent = score;
-          resetCoinPosition(coin);
+          // Check if the coin is already being collected
+          if (!coin.isCollected) {
+            coin.isCollected = true; // Set the flag to true to avoid multiple calls
+            handleCoinCollected(coin);
+          }
+        } else {
+          // Reset the flag when the coin is no longer in the collection range
+          coin.isCollected = false;
         }
       });
     }
-  
+    
+    function handleCoinCollected(coin) {
+      coin.style.transition = "top 1s linear, opacity 1s linear";
+      coin.style.top = "500px";
+      coin.style.opacity = "0";
+    
+      // Listen for the transitionend event to reset the top position and opacity
+      coin.addEventListener("transitionend", function handleTransitionEnd() {
+        resetCoinPosition(coin);
+        coin.style.transition = ""; // Reset transitions for future animations
+        coin.style.opacity = "1"; // Restore opacity
+    
+        // Increment the score by 1 for each collected coin
+        score++;
+        scoreElement.textContent = score; // Update the score display
+    
+        // Remove the event listener to avoid multiple calls
+        coin.removeEventListener("transitionend", handleTransitionEnd);
+      });
+    }
+   
   
     function resetCoinPosition(coin) {
-      const randomX = Math.random() * (window.innerWidth - 50);
-      const randomY = Math.random() * (window.innerHeight - 50);
+      const randomX = Math.random() * (window.innerWidth - parseInt(getComputedStyle(coin).width, 10));
+      // const randomY = Math.random() * (window.innerHeight - parseInt(getComputedStyle(coin).height, 10));
+      
       coin.style.left = `${randomX}px`;
-      coin.style.top = `${randomY}px`;
+      coin.style.top = `${810}px`;
+    
+      // Ensure the coin is visible
+      coin.style.display = "block";
     }
   
     document.addEventListener("keydown", function (event) {
@@ -108,10 +137,11 @@ document.addEventListener("DOMContentLoaded", function () {
         moveRight();
       }
     }, 20);
+    
   });
-  
-  
+   
   document.addEventListener("DOMContentLoaded", function () {
+  
     const container1 = document.getElementById("container11");
 
     function createFallingObject() {
@@ -121,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const startPositionX1 = Math.random() * window.innerWidth;
         const startPositionY1 = -20;
-        const speed = 10 + Math.random() * 1; // Adjust speed as needed
+        const speed = 5 + Math.random() * 3; // Adjust speed as needed
 
         object1.style.left = startPositionX1 + "px";
         object1.style.top = startPositionY1 + "px";
@@ -148,20 +178,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function checkIn() {
-  var object2 = document.getElementById('pers');
-  var object3 = document.getElementsByClassName('.fobject');
-  var rect1 = object2.getBoundingClientRect();
-  var rect2 = object3.getBoundingClientRect();
+  const squareRect = document.querySelector(".square").getBoundingClientRect();
+  const meteors = document.querySelectorAll(".fobject");
 
-  if (
-    rect1.x = rect2.x &&
-    rect1.x + rect1.width > rect2.x &&
-    rect1.y < rect2.y + rect2.height &&
-    rect1.y + rect1.height > rect2.y
-  ) {
-    object2.style.display = 'none';
+  for (const meteor of meteors) {
+    const meteorRect = meteor.getBoundingClientRect();
+
+    if (squareRect.intersects(meteorRect)) {
+      // Trigger the collision event
+      const event = new CollisionEvent("square-meteor-collision");
+      event.detail = {
+        square: square,
+        meteor: meteor
+      };
+      window.dispatchEvent(event);
+    }
   }
-  requestAnimationFrame(checkIn);
 
+  requestAnimationFrame(checkIn);
 }
 checkIn();
