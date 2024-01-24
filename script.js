@@ -140,61 +140,84 @@ document.addEventListener("DOMContentLoaded", function () {
     
   });
    
-  document.addEventListener("DOMContentLoaded", function () {
   
-    const container1 = document.getElementById("container11");
+document.addEventListener("DOMContentLoaded", function () {
+  const container1 = document.getElementById("container11")
+  const character = document.getElementById("pers")
+  const square = document.querySelector(".square")
+  const modal = document.querySelector(".modal")
+  const closeBtn = document.querySelector(".close");
 
-    function createFallingObject() {
-        const object1 = document.createElement("div1");
-        object1.className = "falling-object";
-        container1.appendChild(object1);
+  function createFallingObject() {
+      const object1 = document.createElement("div")
+      object1.className = "fobject"
+      container1.appendChild(object1)
 
-        const startPositionX1 = Math.random() * window.innerWidth;
-        const startPositionY1 = -20;
-        const speed = 5 + Math.random() * 3; // Adjust speed as needed
+      const startPositionX1 = Math.random() * window.innerWidth
+      const startPositionY1 = -20
+      const speed = 2 + Math.random() * 3
 
-        object1.style.left = startPositionX1 + "px";
-        object1.style.top = startPositionY1 + "px";
+      object1.style.left = startPositionX1 + "px"
+      object1.style.top = startPositionY1 + "px"
 
-        function updatePosition() {
-            const currentPositionY1 = parseFloat(object1.style.top);
-            if (currentPositionY1 < window.innerHeight) {
-                object1.style.top = currentPositionY1 + speed + "px";
-                requestAnimationFrame(updatePosition);
-            } else {
-                container1.removeChild(object1);
-            }
-        }
+      function updatePosition() {
+          const currentPositionY1 = parseFloat(object1.style.top)
+          if (currentPositionY1 < window.innerHeight) {
+              object1.style.top = currentPositionY1 + speed + "px"
 
-        updatePosition();
-    }
+              if (isOverlapping(character, object1)) {
+                  character.style.display = "none"
+                  clearInterval(checkOverlapInterval)
+              }
 
-    function spawnObjects() {
-        createFallingObject();
-        setTimeout(spawnObjects, 2000); 
-    }
+              if (isOverlapping(square, object1)) {
+                  square.style.display = "none"
+                  clearInterval(checkSquareOverlapInterval)
+              }
 
-    spawnObjects();
-});
-
-function checkIn() {
-  const squareRect = document.querySelector(".square").getBoundingClientRect();
-  const meteors = document.querySelectorAll(".fobject");
-
-  for (const meteor of meteors) {
-    const meteorRect = meteor.getBoundingClientRect();
-
-    if (squareRect.intersects(meteorRect)) {
-      // Trigger the collision event
-      const event = new CollisionEvent("square-meteor-collision");
-      event.detail = {
-        square: square,
-        meteor: meteor
-      };
-      window.dispatchEvent(event);
-    }
+              requestAnimationFrame(updatePosition)
+          } else {
+              container1.removeChild(object1)
+          }
+      }
+closeBtn.addEventListener("click", function () {
+      modal.style.display = "none";
+  });
+      updatePosition()
   }
 
-  requestAnimationFrame(checkIn);
-}
-checkIn();
+  function spawnObjects() {
+      createFallingObject()
+      setTimeout(spawnObjects, 700)
+  }
+
+  const checkOverlapInterval = setInterval(() => {
+      if (isOverlapping(character, container1)) {
+          character.style.display = "none"
+          clearInterval(checkOverlapInterval)
+      }
+  }, 100)
+
+  const checkSquareOverlapInterval = setInterval(() => {
+      if (isOverlapping(square, container1)) {
+          square.style.display = "none"
+          modal.style.display = "block"
+
+          clearInterval(checkSquareOverlapInterval)
+      }
+  }, 100)
+
+  spawnObjects()
+
+  function isOverlapping(element1, element2) {
+      const rect1 = element1.getBoundingClientRect()
+      const rect2 = element2.getBoundingClientRect()
+
+      return !(
+          rect1.top > rect2.bottom ||
+          rect1.right < rect2.left ||
+          rect1.bottom < rect2.top ||
+          rect1.left > rect2.right
+      );
+  }
+});
