@@ -139,9 +139,9 @@ body {
   transform-origin: bottom center;
 } */
 
-.falling-object {
+.fobject {
   position: absolute;
-  width: 100px; height: 100px;
+  width: 90px; height: 100px;
   background-image: url(image-removebg-preview.png);
 
 }

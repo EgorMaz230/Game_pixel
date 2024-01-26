@@ -140,84 +140,83 @@ document.addEventListener("DOMContentLoaded", function () {
     
   });
    
-  
-document.addEventListener("DOMContentLoaded", function () {
-  const container1 = document.getElementById("container11")
-  const character = document.getElementById("pers")
-  const square = document.querySelector(".square")
-  const modal = document.querySelector(".modal")
-  const closeBtn = document.querySelector(".close");
+  document.addEventListener("DOMContentLoaded", function () {
+    const container1 = document.getElementById("container11")
+    const character = document.getElementById("pers")
+    const square = document.querySelector(".square")
+    const modal = document.querySelector(".modal")
+    const closeBtn = document.querySelector(".close");
 
-  function createFallingObject() {
-      const object1 = document.createElement("div")
-      object1.className = "fobject"
-      container1.appendChild(object1)
+    function createFallingObject() {
+        const object1 = document.createElement("div")
+        object1.className = "fobject"
+        container1.appendChild(object1)
 
-      const startPositionX1 = Math.random() * window.innerWidth
-      const startPositionY1 = -20
-      const speed = 2 + Math.random() * 3
+        const startPositionX1 = Math.random() * window.innerWidth
+        const startPositionY1 = -20
+        const speed = 2 + Math.random() * 3
 
-      object1.style.left = startPositionX1 + "px"
-      object1.style.top = startPositionY1 + "px"
+        object1.style.left = startPositionX1 + "px"
+        object1.style.top = startPositionY1 + "px"
 
-      function updatePosition() {
-          const currentPositionY1 = parseFloat(object1.style.top)
-          if (currentPositionY1 < window.innerHeight) {
-              object1.style.top = currentPositionY1 + speed + "px"
+        function updatePosition() {
+            const currentPositionY1 = parseFloat(object1.style.top)
+            if (currentPositionY1 < window.innerHeight) {
+                object1.style.top = currentPositionY1 + speed + "px"
 
-              if (isOverlapping(character, object1)) {
-                  character.style.display = "none"
-                  clearInterval(checkOverlapInterval)
-              }
+                if (isOverlapping(character, object1)) {
+                    character.style.display = "none"
+                    clearInterval(checkOverlapInterval)
+                }
 
-              if (isOverlapping(square, object1)) {
-                  square.style.display = "none"
-                  clearInterval(checkSquareOverlapInterval)
-              }
+                if (isOverlapping(square, object1)) {
+                    square.style.display = "none"
+                    clearInterval(checkSquareOverlapInterval)
+                }
 
-              requestAnimationFrame(updatePosition)
-          } else {
-              container1.removeChild(object1)
-          }
-      }
+                requestAnimationFrame(updatePosition)
+            } else {
+                container1.removeChild(object1)
+            }
+        }
 closeBtn.addEventListener("click", function () {
-      modal.style.display = "none";
-  });
-      updatePosition()
-  }
+        modal.style.display = "none";
+    });
+        updatePosition()
+    }
 
-  function spawnObjects() {
-      createFallingObject()
-      setTimeout(spawnObjects, 700)
-  }
+    function spawnObjects() {
+        createFallingObject()
+        setTimeout(spawnObjects, 700)
+    }
 
-  const checkOverlapInterval = setInterval(() => {
-      if (isOverlapping(character, container1)) {
-          character.style.display = "none"
-          clearInterval(checkOverlapInterval)
-      }
-  }, 100)
+    const checkOverlapInterval = setInterval(() => {
+        if (isOverlapping(character, container1)) {
+            character.style.display = "none"
+            clearInterval(checkOverlapInterval)
+        }
+    }, 100)
 
-  const checkSquareOverlapInterval = setInterval(() => {
-      if (isOverlapping(square, container1)) {
-          square.style.display = "none"
-          modal.style.display = "block"
+    const checkSquareOverlapInterval = setInterval(() => {
+        if (isOverlapping(square, container1)) {
+            square.style.display = "none"
+            modal.style.display = "block"
 
-          clearInterval(checkSquareOverlapInterval)
-      }
-  }, 100)
+            clearInterval(checkSquareOverlapInterval)
+        }
+    }, 100)
 
-  spawnObjects()
+    spawnObjects()
 
-  function isOverlapping(element1, element2) {
-      const rect1 = element1.getBoundingClientRect()
-      const rect2 = element2.getBoundingClientRect()
+    function isOverlapping(element1, element2) {
+        const rect1 = element1.getBoundingClientRect()
+        const rect2 = element2.getBoundingClientRect()
 
-      return !(
-          rect1.top > rect2.bottom ||
-          rect1.right < rect2.left ||
-          rect1.bottom < rect2.top ||
-          rect1.left > rect2.right
-      );
-  }
+        return !(
+            rect1.top > rect2.bottom ||
+            rect1.right < rect2.left ||
+            rect1.bottom < rect2.top ||
+            rect1.left > rect2.right
+        );
+    }
 });
