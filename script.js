@@ -166,6 +166,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (isOverlapping(character, object1)) {
                     character.style.display = "none"
+                    modal.style.display = "block"
+
                     clearInterval(checkOverlapInterval)
                 }
 
@@ -177,10 +179,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 requestAnimationFrame(updatePosition)
             } else {
                 container1.removeChild(object1)
+                
             }
         }
 closeBtn.addEventListener("click", function () {
         modal.style.display = "none";
+
     });
         updatePosition()
     }
@@ -200,7 +204,7 @@ closeBtn.addEventListener("click", function () {
     const checkSquareOverlapInterval = setInterval(() => {
         if (isOverlapping(square, container1)) {
             square.style.display = "none"
-            modal.style.display = "block"
+        
 
             clearInterval(checkSquareOverlapInterval)
         }
@@ -220,3 +224,12 @@ closeBtn.addEventListener("click", function () {
         );
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  var reloadButton = document.getElementById('reload');
+
+  reloadButton.addEventListener('click', function() {
+    location.reload(true);
+  });
+});
+

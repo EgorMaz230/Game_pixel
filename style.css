@@ -172,17 +172,24 @@ z-index: -40;
 
 .modal-content {
   position: absolute;
+  width: 300px; height: 130px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: rgb(0, 0, 0);
+  border: 1px solid #ffffff;
   padding: 20px;
   text-align: center;
 }
 
 .close {
   position: absolute;
-  top: 10px;
+  font-size: 50px;
+  top: 1px;
   right: 10px;
   cursor: pointer;
+  color: white;
+}
+
+.close:hover{
 }
