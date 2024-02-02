@@ -1,1 +1,1 @@
-# Game_pixel
+# my-part-of-game

@@ -1,0 +1,92 @@
+ @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+    * {   
+    padding: 0;   
+    margin: 0;   
+    border: 0;   
+    text-decoration: none;   
+    font-family: 'Pixelify Sans', sans-serif;
+    color: white;
+   }   
+      
+   :focus,:active{outline: none;}   
+   a:focus,a:active{outline: none;}   
+      
+   nav,footer,header,aside{display: block;}   
+      
+   :root{   
+    --boss: rgb(160, 160, 160);   
+    --colors: rgb(210, 198, 198);   
+   }    
+      
+   input,button,textarea{font-family:inherit;}   
+      
+   input::-ms-clear{display: none;}   
+   button{cursor: pointer;}   
+   button::-moz-focus-inner {padding:0;border:0;}   
+   a, a:visited{text-decoration: none;}   
+   a:hover{text-decoration: none;}   
+   ul li{list-style: none;}   
+   img{vertical-align: top;}   
+      
+   h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}   
+      
+   html{   
+    scroll-behavior: smooth;   
+   }
+   * {
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    background-image: url(./2c4fde25975aa28d5ccd2429ffbe8f04.gif);
+    background-repeat: no-repeat;
+    background-size: 1800px;
+  }
+  
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .text {
+    width: 234ch;
+    color: white;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 4px solid white;
+    animation: cursor 0.75s step-end infinite;
+    animation: printed_text 20s steps(100);
+  }
+  
+  @keyframes cursor {
+    0% {
+      border-color: white;
+    }
+  
+    50% {
+      border-color: transparent;
+    }
+  
+    100% {
+      border-color: white;
+    }
+  }
+  
+  @keyframes printed_text {
+    from {
+      width: 0;
+    }
+  }
+  
+  .A_start {
+    font-size: 70px;
+    padding: 30px 250px;
+    background: #01456565;
+    box-shadow: 10px 10px 10px #000;
+    border-radius: 15px;
+    transition: 0.6s;
+    opacity: 1;
+}
