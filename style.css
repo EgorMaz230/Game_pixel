@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
 * {   
@@ -72,6 +71,7 @@ body {
     gap: 200px;
     transition: 0.8s;
     max-width: 1200px;
+    align-items: center;
 }
 .A_full-content {
     max-width: 1800px;
@@ -79,6 +79,8 @@ body {
     flex-direction: column;
     justify-content: center;
     margin: auto;
+    align-items: center;
+    height: 100vh;
 }
 .A_head {
     font-size: 100px;
@@ -99,7 +101,7 @@ body {
     transition: 0.6s;
     opacity: 0;
     text-align: center;
-    animation: starting 1s 6.5s linear forwards, blinking 1s 8s linear infinite alternate ;
+    animation: /* starting 1s 6.5s linear forwards, */ blinking 1s 8s linear infinite alternate ;
 }
 @keyframes starting {
     100% {

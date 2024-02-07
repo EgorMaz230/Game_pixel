@@ -85,7 +85,9 @@ input {
     height: 220px;
     object-fit: cover;
 }
-
+.image img:nth-child(2) {
+    width: 100%;
+}
 .card .image .dots{
     text-align: center;
 }

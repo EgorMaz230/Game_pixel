@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     let square = document.querySelector(".square");
     let coins = document.querySelectorAll(".coin");
@@ -9,16 +8,58 @@ document.addEventListener("DOMContentLoaded", function () {
     let isJumping = false;
   
     let step = 8;
-    let jumpHeight = 100;
-    let tiltAngle = 15;
+    let jumpHeight = 130;
+    let tiltAngle = 10;
     let currentBottom = parseInt(getComputedStyle(square).bottom, 10);
     let score = 0;
     
+    function checkPosition() {
+      let squareRect = square.getBoundingClientRect();
+      var back = document.querySelector('.back');
+  
+      var obstacleRect = obstacle.getBoundingClientRect();
+      var obstacleFirstRect = obstacleFirst.getBoundingClientRect();
+      var obstacleSecondRect = obstacleSecond.getBoundingClientRect();
+  
+      var threshold = 10;
+  
+      // Проверка коллизий с препятствиями
+      if (
+          isColliding(squareRect, obstacleRect, threshold) ||
+          isColliding(squareRect, obstacleFirstRect, threshold) ||
+          isColliding(squareRect, obstacleSecondRect, threshold)
+      ) {
+          handleDeath();
+      }
+  
+      // Проверка коллизий с монетами
+      coins.forEach((coin) => {
+          let coinRect = coin.getBoundingClientRect();
+  
+          if (
+              squareRect.bottom >= coinRect.top &&
+              squareRect.top <= coinRect.bottom &&
+              squareRect.right >= coinRect.left &&
+              squareRect.left <= coinRect.right &&
+              coin.style.display !== "none"
+          ) {
+              // Check if the coin is already being collected
+              if (!coin.isCollected) {
+                  coin.isCollected = true; // Set the flag to true to avoid multiple calls
+                  handleCoinCollected(coin);
+              }
+          } else {
+              // Reset the flag when the coin is no longer in the collection range
+              coin.isCollected = false;
+          }
+      });
+  }
   
     function moveLeft() {
       let currentLeft = parseInt(getComputedStyle(square).left, 10);
       square.style.left = Math.max(currentLeft - step, 0) + "px";
       square.style.transform = "scaleX(-1) rotate(-" + tiltAngle + "deg)";
+      currentBottom = parseInt(getComputedStyle(square).bottom, 10); // Обновление currentBottom
       checkPosition();
     }
   
@@ -26,54 +67,37 @@ document.addEventListener("DOMContentLoaded", function () {
       let currentLeft = parseInt(getComputedStyle(square).left, 10);
       square.style.left = Math.min(currentLeft + step, window.innerWidth - parseInt(getComputedStyle(square).width, 10)) + "px";
       square.style.transform = "scaleX(1) rotate(" + tiltAngle + "deg)";
+      currentBottom = parseInt(getComputedStyle(square).bottom, 10); // Обновление currentBottom
       checkPosition();
     }
   
-    function checkPosition() {
-      let squareRect = square.getBoundingClientRect();
     
-      coins.forEach((coin) => {
-        let coinRect = coin.getBoundingClientRect();
-    
-        if (
-          squareRect.bottom >= coinRect.top &&
-          squareRect.top <= coinRect.bottom &&
-          squareRect.right >= coinRect.left &&
-          squareRect.left <= coinRect.right &&
-          coin.style.display !== "none"
-        ) {
-          // Check if the coin is already being collected
-          if (!coin.isCollected) {
-            coin.isCollected = true; // Set the flag to true to avoid multiple calls
-            handleCoinCollected(coin);
-          }
-        } else {
-          // Reset the flag when the coin is no longer in the collection range
-          coin.isCollected = false;
-        }
-      });
-    }
     
     function handleCoinCollected(coin) {
       coin.style.transition = "top 1s linear, opacity 1s linear";
       coin.style.top = "500px";
       coin.style.opacity = "0";
-    
+  
       // Listen for the transitionend event to reset the top position and opacity
       coin.addEventListener("transitionend", function handleTransitionEnd() {
-        resetCoinPosition(coin);
-        coin.style.transition = ""; // Reset transitions for future animations
-        coin.style.opacity = "1"; // Restore opacity
-    
-        // Increment the score by 1 for each collected coin
-        score++;
-        scoreElement.textContent = score; // Update the score display
-    
-        // Remove the event listener to avoid multiple calls
-        coin.removeEventListener("transitionend", handleTransitionEnd);
+          resetCoinPosition(coin);
+          coin.style.transition = ""; // Reset transitions for future animations
+          coin.style.opacity = "1"; // Restore opacity
+  
+          // Increment the score by 1 for each collected coin
+          score++;
+          scoreElement.textContent = score; // Update the score display
+  
+          // Check if the player has collected 5 coins
+          if (score >= 5) {
+              // Redirect to index.html
+              window.location.href = "index.html";
+          }
+  
+          // Remove the event listener to avoid multiple calls
+          coin.removeEventListener("transitionend", handleTransitionEnd);
       });
-    }
-   
+  }
   
     function resetCoinPosition(coin) {
       const randomX = Math.random() * (window.innerWidth - parseInt(getComputedStyle(coin).width, 10));
@@ -138,12 +162,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }, 20);
     
-  });
+ 
    
-  document.addEventListener("DOMContentLoaded", function () {
+
     const container1 = document.getElementById("container11")
     const character = document.getElementById("pers")
-    const square = document.querySelector(".square")
+    // const square = document.querySelector(".square")
     const modal = document.querySelector(".modal")
     const closeBtn = document.querySelector(".close");
 
@@ -219,4 +243,151 @@ closeBtn.addEventListener("click", function () {
             rect1.left > rect2.right
         );
     }
+
+
+
+  var body = document.body;
+  var obstacle = document.querySelector('.obstacle');
+  var obstacleFirst = document.querySelector('.obstacle_first');
+  var obstacleSecond = document.querySelector('.obstacle_second');
+
+  // var isMovingLeft = false;
+  // var isMovingRight = false;
+  // var isJumping = false;
+
+
+
+  var initialLeft = parseInt(getComputedStyle(square).left, 10);
+  // var currentBottom = parseInt(getComputedStyle(square).bottom, 10);
+
+  var isDead = false;
+
+  function animateDeath() {
+    isDead = true;
+    square.style.transition = 'left 0.5s ease, transform 0.5s ease';
+    currentBottom = parseInt(getComputedStyle(square).bottom, 10); // Обновление currentBottom
+  
+    setTimeout(function () {
+      square.style.left = parseInt(getComputedStyle(square).left, 10) + 'px';
+  
+      setTimeout(function () {
+        square.style.transition = 'bottom 0.5s ease';
+        square.style.bottom = currentBottom + jumpHeight + 'px';
+  
+        setTimeout(function () {
+          square.style.bottom = '0';
+        }, 500);
+  
+        setTimeout(function () {
+          square.style.transition = 'transform 0.5s ease';
+          square.style.transform = 'rotate(90deg)';
+          
+          setTimeout(function () {
+            resetPlayer();
+          }, 500);
+        }, 1000);
+      }, 500);
+    }, 500);
+  }
+  
+  
+
+  function resetPlayer() {
+    isDead = false;
+    square.style.transition = 'none';
+    square.style.left = initialLeft + 'px';
+    square.style.bottom = '0';
+    square.style.transform = 'rotate(0)';
+    currentBottom = parseInt(getComputedStyle(square).bottom, 10); // Обновление currentBottom
+  }
+
+  function handleDeath() {
+    if (!isDead) {
+        animateDeath();
+        // Обнуляем счетчик score
+        score = 0;
+        scoreElement.textContent = score;
+        setTimeout(function () {
+            resetPlayer();
+        }, 2500);
+    }
+}
+
+  function moveLeft() {
+    var currentLeft = parseInt(getComputedStyle(square).left, 10);
+    square.style.left = currentLeft - step + 'px';
+    square.style.transform = 'scaleX(-1) rotate(-' + tiltAngle + 'deg)';
+    currentBottom = parseInt(getComputedStyle(square).bottom, 10); // Обновление currentBottom
+    checkPosition();
+  }
+
+  function moveRight() {
+    var currentLeft = parseInt(getComputedStyle(square).left, 10);
+    square.style.left = currentLeft + step + 'px';
+    square.style.transform = 'scaleX(1) rotate(' + tiltAngle + 'deg)';
+    currentBottom = parseInt(getComputedStyle(square).bottom, 10); // Обновление currentBottom
+    checkPosition();
+  }
+
+
+  function isColliding(rect1, rect2, threshold) {
+    return (
+      rect1.right - threshold > rect2.left &&
+      rect1.left + threshold < rect2.right &&
+      rect1.bottom - threshold > rect2.top &&
+      rect1.top + threshold < rect2.bottom
+    );
+  }
+
+  document.addEventListener('keydown', function (event) {
+    if (event.keyCode === 37) {
+      isMovingLeft = true;
+      isMovingRight = false;
+    } else if (event.keyCode === 39) {
+      isMovingRight = true;
+      isMovingLeft = false;
+    } else if (event.keyCode === 38 && !isJumping) {
+      isJumping = true;
+      var jumpUp = setInterval(function () {
+        if (currentBottom < jumpHeight) {
+          square.style.bottom = currentBottom + step + 'px';
+          currentBottom += step;
+        } else {
+          clearInterval(jumpUp);
+          var jumpDown = setInterval(function () {
+            if (currentBottom > 0) {
+              square.style.bottom = currentBottom - step + 'px';
+              currentBottom -= step;
+            } else {
+              clearInterval(jumpDown);
+              isJumping = false;
+              checkPosition(); // Check position after the jump is complete
+            }
+          }, 20);
+        }
+      }, 20);
+    }
+  });
+
+  document.addEventListener('keyup', function (event) {
+    if (event.keyCode === 37) {
+      isMovingLeft = false;
+      square.style.transform = 'scaleX(-1) rotate(0)';
+    } else if (event.keyCode === 39) {
+      isMovingRight = false;
+      square.style.transform = 'scaleX(1) rotate(0)';
+    }
+  });
+
+  setInterval(function () {
+    if (isMovingLeft) {
+      moveLeft();
+    }
+  }, 20);
+
+  setInterval(function () {
+    if (isMovingRight) {
+      moveRight();
+    }
+  }, 20);
 });

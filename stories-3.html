@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPACE X</title>
+    <link rel="stylesheet" href="stories-3.css">
+</head>
+<body>
+<div class="A_all-content-bg-box-3">
+    <div class="A_all-content-3">
+        <div class="A_picture-box-3">
+            <img class="A_picture-3" src="./2024-01-2619.39.48-ezgif.com-video-to-gif-converter.gif" alt="">
+        </div>
+        <div class="A_story-3">
+          Space X-a speed racer that uses quasar tunnels to travel instantaneously. Has a unique technology of hiding from radars. Weakness: Vulnerable to black holes and gravitational vortices
+        </div>
+        <div class="A_start-game-3">
+            PRESS ENTER TO START
+        </div>
+    </div>
+</div>
+<script> 
+    var textToType = "Space X-a speed racer that uses quasar tunnels to travel instantaneously. Has a unique technology of hiding from radars. Weakness: Vulnerable to black holes and gravitational vortices"; 
+ 
+    var outputElement = document.querySelector(".A_story-3"); 
+    outputElement.textContent = ""; 
+ 
+    function typeText(index) { 
+      if (index < textToType.length) { 
+        outputElement.textContent += textToType.charAt(index); 
+        index++; 
+        setTimeout(function() { 
+          typeText(index); 
+        }, 100); 
+      } 
+    } 
+ 
+    setTimeout(function() { 
+      typeText(0); 
+    }, 1000); 
+  </script> 
+   <script src="./stories.js"></script>
+</body>
+</html>

@@ -195,3 +195,36 @@ z-index: -40;
   right: 10px;
   cursor: pointer;
 }
+
+
+
+
+.obstacle {
+  position: absolute;
+  right: 10%;
+  bottom: 0;
+  width: 50px;
+  height: 90px;
+  background: url(https://i.gifer.com/5Mz4.gif) center center / cover;
+  border: 1px solid #000;
+}
+
+.obstacle_first {
+  position: absolute;
+  right: 35%;
+  bottom: 10px;
+  width: 30px;
+  height: 40px;
+  background: url(https://i.gifer.com/5Mz4.gif) center center / cover;
+  border: 1px solid #000;
+}
+
+.obstacle_second {
+  position: absolute;
+  right: 55%;
+  bottom: 10px;
+  width: 30px;
+  height: 40px;
+  background: url(https://i.gifer.com/5Mz4.gif) center center / cover;
+  border: 1px solid #000;
+}

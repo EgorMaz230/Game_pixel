@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLEEP WALKER</title>
+    <link rel="stylesheet" href="stories-2.css">
+</head>
+<body>
+<div class="A_all-content-bg-box-2">
+    <div class="A_all-content-2">
+        <div class="A_picture-box-2">
+            <img class="A_picture-2" src="./Paz.gif" alt="">
+        </div>
+        <div class="A_story-2">
+            Sleep Walker-a robot friend that can interact with electronics and regenerate energy. Weakness: Vulnerable to electromagnetic disturbances that can cause it to malfunction.
+        </div>
+        <div class="A_start-game-2">
+            PRESS ENTER TO START
+        </div>
+    </div>
+</div>
+<script> 
+    var textToType = " Sleep Walker-a robot friend that can interact with electronics and regenerate energy. Weakness: Vulnerable to electromagnetic disturbances that can cause it to malfunction."; 
+ 
+    var outputElement = document.querySelector(".A_story-2"); 
+    outputElement.textContent = ""; 
+ 
+    function typeText(index) { 
+      if (index < textToType.length) { 
+        outputElement.textContent += textToType.charAt(index); 
+        index++; 
+        setTimeout(function() { 
+          typeText(index); 
+        }, 100); 
+      } 
+    } 
+ 
+    setTimeout(function() { 
+      typeText(0); 
+    }, 1000); 
+  </script> 
+  <script src="./stories.js"></script>
+</body>
+</html>

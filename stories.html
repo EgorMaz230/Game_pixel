@@ -3,15 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STORIES</title>
-    <link rel="stylesheet" href="./stories.css">
+    <title>NEUTRON NOMAD</title>
+    <link rel="stylesheet" href="stories.css">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="text">Blarb from the planet Glyptoria has made its way to Space Dance Chaos for the first time. This tournament brought together aliens from all over space for an epic battle <br> on a floating 
-             space platform where players had to dodge unexpected meteorites. Blarb decided to try how good he is...</div>
+<div class="A_all-content-bg-box">
+    <div class="A_all-content">
+        <div class="A_picture-box">
+            <img class="A_picture" src="./2024-01-2619.39.03-ezgif.com-video-to-gif-converter.gif" alt="">
+        </div>
+        <div class="A_story">
+            Neutron Nomad-a defender of the cosmos who uses the power of the elements to fight evil. Possesses the magic of natural elements and has a strong body armor. Weakness: Vulnerable to radiation and energies from large stars
+        </div>
+        <div class="A_start-game">
+            PRESS ENTER TO START
+        </div>
     </div>
-    <div class="A_start">PRESS ENTER TO START</div>
-    <script src="./stories.js"></script>
+</div>
+<script> 
+    var textToType = " Neutron Nomad-a defender of the cosmos who uses the power of the elements to fight evil. Possesses the magic of natural elements and has a strong body armor. Weakness: Vulnerable to radiation and energies from large stars"; 
+ 
+    var outputElement = document.querySelector(".A_story"); 
+    outputElement.textContent = ""; 
+ 
+    function typeText(index) { 
+      if (index < textToType.length) { 
+        outputElement.textContent += textToType.charAt(index); 
+        index++; 
+        setTimeout(function() { 
+          typeText(index); 
+        }, 100); 
+      } 
+    } 
+ 
+    setTimeout(function() { 
+      typeText(0); 
+    }, 1000); 
+  </script> 
+   <script src="./stories.js"></script>
 </body>
 </html>
