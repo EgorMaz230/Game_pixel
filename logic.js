@@ -391,3 +391,7 @@ closeBtn.addEventListener("click", function () {
     }
   }, 20);
 });
+
+function reloadPage() {
+  location.reload(true);
+}
