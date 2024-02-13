@@ -1333,7 +1333,7 @@ document.addEventListener('keydown', function (event) {
     loading.classList.add('fade-out');
     setTimeout(function () {
         loading.classList.remove('fade-out');
-        window.location.href = 'choose.html';
+        window.location.href = './controls.html';
     }, 1000);
   }
 });

@@ -48,28 +48,7 @@ body {
     border-radius: 50%;
     top: 900px;
 } */
-.coin:nth-child(3) {
-  width: 50px;
-  height: 50px;
-    left: 400px;
-  position: absolute;
-    width: 20px;
-    height: 20px;
-    background: url(./Fw3P.gif) center center / cover;;
-    border-radius: 50%;
-    top: 980px;
-}
-.coin:nth-child(4) {
-  width: 50px;
-  height: 50px;
-    left: 200px;
-  position: absolute;
-    width: 20px;
-    height: 20px;
-    background: url(./Fw3P.gif) center center / cover;;
-    border-radius: 50%;
-    top: 980px;
-}
+
 .coin:nth-child(5) {
   width: 50px;
   height: 50px;
@@ -198,10 +177,19 @@ z-index: -40;
 
 
 
-
 .obstacle {
   position: absolute;
-  right: 10%;
+  right: 20%;
+  bottom: 0;
+  width: 50px;
+  height: 40px;
+  /* background-image: url(./1685773460_art-kartinkof-club-p-shipi-piksel-art-8.png) center center / cover; */
+  border: 1px solid #000;
+}
+
+.obstacle_first {
+  position: absolute;
+  right: 45%;
   bottom: 0;
   width: 50px;
   height: 40px;
@@ -209,26 +197,15 @@ z-index: -40;
   border: 1px solid #000;
 }
 
-.obstacle_first {
-  position: absolute;
-  right: 35%;
-  bottom: 0;
-  width: 30px;
-  height: 40px;
-  background: url(https://i.gifer.com/5Mz4.gif) center center / cover;
-  border: 1px solid #000;
-}
-
 .obstacle_second {
   position: absolute;
-  right: 55%;
+  right: 75%;
   bottom: 0;
   width: 30px;
   height: 40px;
   background: url(https://i.gifer.com/5Mz4.gif) center center / cover;
   border: 1px solid #000;
 }
-
 .modal-content{
   width: 300px;
   height: 150px;

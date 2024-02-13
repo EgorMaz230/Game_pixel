@@ -71,8 +71,10 @@
 
   }
   .A_picture {
-    border-radius: 30px;
-    width: 400px;
+    /* border-radius: 30px; */
+    /* width: 100px; */
+    /* border: 1px solid #ffffff; */
+    margin-top: 30px;
   }
 
   .A_story {

@@ -13,6 +13,39 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentBottom = parseInt(getComputedStyle(square).bottom, 10);
     let score = 0;
     
+        
+
+        // // Отримання об'єкта з відліком
+        // const countdown = document.getElementById("countdown");
+    
+        // // Встановлення початкового значення таймера
+        // let timeLeft = 20;
+    
+        // // Функція для оновлення відображення таймера
+        // function updateCountdown() {
+        //     countdown.textContent = `Redirecting in ${timeLeft} seconds`;
+        // }
+    
+        // // Функція для відліку часу та переходу на нову сторінку після 20 секунд
+        // function countdownTimer() {
+        //     updateCountdown(); // Оновлення відображення таймера
+    
+        //     // Зменшення лічильника кожну секунду
+        //     const timer = setInterval(() => {
+        //         timeLeft--;
+        //         updateCountdown(); // Оновлення відображення таймера
+    
+        //         // Перевірка, чи досягнуто кінця таймера
+        //         if (timeLeft <= 0) {
+        //             clearInterval(timer); // Зупинка таймера
+        //             window.location.href = "index.html"; // Перехід на нову сторінку
+        //         }
+        //     }, 1000);
+        // }
+    
+        // // Виклик функції відліку таймера
+        // countdownTimer();
+  
     function checkPosition() {
       let squareRect = square.getBoundingClientRect();
       var back = document.querySelector('.back');
@@ -55,21 +88,26 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
   
-    function moveLeft() {
-      let currentLeft = parseInt(getComputedStyle(square).left, 10);
-      square.style.left = Math.max(currentLeft - step, 0) + "px";
-      square.style.transform = "scaleX(-1) rotate(-" + tiltAngle + "deg)";
-      currentBottom = parseInt(getComputedStyle(square).bottom, 10); // Обновление currentBottom
+  function moveLeft() {
+    var currentLeft = parseInt(getComputedStyle(square).left, 10);
+    if (currentLeft - step > 0) { // Перевірка, чи не вийшов персонаж за межі лівого краю екрану
+      square.style.left = currentLeft - step + 'px';
+      square.style.transform = 'scaleX(-1) rotate(-' + tiltAngle + 'deg)';
+      currentBottom = parseInt(getComputedStyle(square).bottom, 10); // Обновлення currentBottom
       checkPosition();
     }
+  }
   
-    function moveRight() {
-      let currentLeft = parseInt(getComputedStyle(square).left, 10);
-      square.style.left = Math.min(currentLeft + step, window.innerWidth - parseInt(getComputedStyle(square).width, 10)) + "px";
-      square.style.transform = "scaleX(1) rotate(" + tiltAngle + "deg)";
-      currentBottom = parseInt(getComputedStyle(square).bottom, 10); // Обновление currentBottom
+  function moveRight() {
+    var currentLeft = parseInt(getComputedStyle(square).left, 10);
+    var maxX = window.innerWidth - parseInt(getComputedStyle(square).width, 10);
+    if (currentLeft + step < maxX) { // Перевірка, чи не вийшов персонаж за межі правого краю екрану
+      square.style.left = currentLeft + step + 'px';
+      square.style.transform = 'scaleX(1) rotate(' + tiltAngle + 'deg)';
+      currentBottom = parseInt(getComputedStyle(square).bottom, 10); // Обновлення currentBottom
       checkPosition();
     }
+  }
   
     
     
@@ -313,21 +351,6 @@ closeBtn.addEventListener("click", function () {
     }
 }
 
-  function moveLeft() {
-    var currentLeft = parseInt(getComputedStyle(square).left, 10);
-    square.style.left = currentLeft - step + 'px';
-    square.style.transform = 'scaleX(-1) rotate(-' + tiltAngle + 'deg)';
-    currentBottom = parseInt(getComputedStyle(square).bottom, 10); // Обновление currentBottom
-    checkPosition();
-  }
-
-  function moveRight() {
-    var currentLeft = parseInt(getComputedStyle(square).left, 10);
-    square.style.left = currentLeft + step + 'px';
-    square.style.transform = 'scaleX(1) rotate(' + tiltAngle + 'deg)';
-    currentBottom = parseInt(getComputedStyle(square).bottom, 10); // Обновление currentBottom
-    checkPosition();
-  }
 
 
   function isColliding(rect1, rect2, threshold) {

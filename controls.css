@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
+* {   
+    padding: 0;   
+    margin: 0;   
+    border: 0;   
+    text-decoration: none;   
+    font-family: 'Pixelify Sans', sans-serif;
+    color: white;
+}   
+  
+:focus,:active{outline: none;}   
+a:focus,a:active{outline: none;}   
+    
+nav,footer,header,aside{display: block;}   
+    
+:root{   
+    --boss: rgb(160, 160, 160);   
+    --colors: rgb(210, 198, 198);   
+}    
+  
+input,button,textarea{font-family:inherit;}   
+    
+input::-ms-clear{display: none;}   
+button{cursor: pointer;}   
+button::-moz-focus-inner {padding:0;border:0;}   
+a, a:visited{text-decoration: none;}   
+a:hover{text-decoration: none;}   
+ul li{list-style: none;}   
+img{width: 300px;
+    height: 300px;
+    vertical-align: top;}   
+    
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}   
+    
+html{   
+    scroll-behavior: smooth;   
+}
+body {
+    background-color: black;
+}
+.A_biggest {
+    max-width: 1800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    height: 100vh;
+}
+.A_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 70px;
+    justify-content: center;
+    transition: 0.8s;
+    max-width: 1200px;
+    align-items: center;
+    gap: 50px;
+}
+.A_right-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+.A_explain {
+    font-size: 40px;
+}
+.A_explain-gif {
+}
+.A_top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+.A_arrow {
+    width: 50px;
+}
+.A_gif {
+    width: 500px;
+    border-radius: 30px;
+}
+.A_start-game {
+    font-size: 45px;
+    padding: 30px 250px;
+    background: #01456565;
+    box-shadow: 10px 10px 10px #000;
+    border-radius: 15px;
+    transition: 0.6s;
+    opacity: 0;
+    text-align: center;
+    animation: /* starting 1s 6.5s linear forwards, */ blinking 1s linear infinite alternate ;
+}
+
+@keyframes blinking {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+/* 
+@media (min-width: 1800px) {
+    .A_biggest {
+    }
+    .A_content {
+    }
+    .A_right-left {
+    }
+    .A_explain {
+    }
+    .A_arrow {
+    }
+    .A_explain-gif {
+    }
+    ..A_gif {
+    }
+    .A_top {
+    }
+    .A_start-game {
+    }
+} */
