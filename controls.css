@@ -27,9 +27,7 @@ button::-moz-focus-inner {padding:0;border:0;}
 a, a:visited{text-decoration: none;}   
 a:hover{text-decoration: none;}   
 ul li{list-style: none;}   
-img{width: 300px;
-    height: 300px;
-    vertical-align: top;}   
+img{vertical-align: top;}   
     
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}   
     
@@ -95,7 +93,6 @@ body {
     text-align: center;
     animation: /* starting 1s 6.5s linear forwards, */ blinking 1s linear infinite alternate ;
 }
-
 @keyframes blinking {
     0% {
         opacity: 0;
@@ -104,7 +101,7 @@ body {
         opacity: 1;
     }
 }
-/* 
+
 @media (min-width: 1800px) {
     .A_biggest {
     }
@@ -124,4 +121,4 @@ body {
     }
     .A_start-game {
     }
-} */
+}
