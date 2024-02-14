@@ -14,55 +14,49 @@ document.addEventListener("DOMContentLoaded", function () {
     let score = 0;
     
         
-
-        // // Отримання об'єкта з відліком
-        // const countdown = document.getElementById("countdown");
+    // Отримання об'єкта з відліком
+        const countdown = document.getElementById("countdown");
     
-        // // Встановлення початкового значення таймера
-        // let timeLeft = 20;
+        // Встановлення початкового значення таймера
+        let timeLeft = 20;
     
-        // // Функція для оновлення відображення таймера
-        // function updateCountdown() {
-        //     countdown.textContent = `Redirecting in ${timeLeft} seconds`;
-        // }
+        // Функція для оновлення відображення таймера
+        function updateCountdown() {
+            countdown.textContent = `Redirecting in ${timeLeft} seconds`;
+        }
     
-        // // Функція для відліку часу та переходу на нову сторінку після 20 секунд
-        // function countdownTimer() {
-        //     updateCountdown(); // Оновлення відображення таймера
+        // Функція для відліку часу та переходу на нову сторінку після 20 секунд
+        function countdownTimer() {
+            updateCountdown(); // Оновлення відображення таймера
     
-        //     // Зменшення лічильника кожну секунду
-        //     const timer = setInterval(() => {
-        //         timeLeft--;
-        //         updateCountdown(); // Оновлення відображення таймера
+            // Зменшення лічильника кожну секунду
+            const timer = setInterval(() => {
+                timeLeft--;
+                updateCountdown(); // Оновлення відображення таймера
     
-        //         // Перевірка, чи досягнуто кінця таймера
-        //         if (timeLeft <= 0) {
-        //             clearInterval(timer); // Зупинка таймера
-        //             window.location.href = "index.html"; // Перехід на нову сторінку
-        //         }
-        //     }, 1000);
-        // }
+                // Перевірка, чи досягнуто кінця таймера
+                if (timeLeft <= 0) {
+                    clearInterval(timer); // Зупинка таймера
+                    window.location.href = "./final.html"; // Перехід на нову сторінку
+                }
+            }, 1000);
+        }
     
-        // // Виклик функції відліку таймера
-        // countdownTimer();
+        // Виклик функції відліку таймера
+        countdownTimer();
   
-        let audio = document.getElementById("myAudio");
-        let toggleButton = document.getElementById("toggleButton");
-        let isPlaying = false;
+        var audio = document.getElementById("myAudio");
+    var toggleButton = document.getElementById("toggleButton");
     
-        toggleButton.addEventListener("click", function() {
-            if (!isPlaying) {
-              audio.pause();
-              toggleButton.textContent = "Play Music";
-             
-               
-            } else {
-              audio.play();
-              toggleButton.textContent = "Pause Music";
-            }
-            isPlaying = !isPlaying; // Переключаем состояние isPlaying
-        }); 
-
+    toggleButton.addEventListener("click", function() {
+      if (audio.paused) {
+        audio.play();
+        toggleButton.textContent = "Pause Music";
+      } else {
+        audio.pause();
+        toggleButton.textContent = "Play Music";
+      }
+    });
 
     
     function checkPosition() {
@@ -151,9 +145,9 @@ document.addEventListener("DOMContentLoaded", function () {
           scoreElement.textContent = score; // Update the score display
       
           // Check if the player has collected 5 coins
-          if (score >= 5) {
+          if (score >= 10) {
             // Redirect to index.html
-            window.location.href = "./secondlevel.html";
+            window.location.href = "end.html";
           }
       
           // Remove the event listener to avoid multiple calls
