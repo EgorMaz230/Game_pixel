@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let audio = document.getElementById("myAudio");
         let toggleButton = document.getElementById("toggleButton");
         let isPlaying = false;
-    
+        // let volumeButton = document.getElementById("volumeButton");
         toggleButton.addEventListener("click", function() {
             if (!isPlaying) {
               audio.pause();
@@ -62,6 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             isPlaying = !isPlaying; // Переключаем состояние isPlaying
         }); 
+      //   volumeButton.addEventListener("input", function() {
+      //     let volume = parseFloat(volumeButton.value);
+      //     audio.volume = volume;
+      // });
 
 
     

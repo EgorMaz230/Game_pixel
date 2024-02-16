@@ -1,7 +1,7 @@
 body {
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(./title.gif);
+    background-image: url(./peakpx.jpg);
     max-width: 1800px;
     /* background-position: center; */
        /* animation: dark-theme 7s; */
@@ -213,7 +213,7 @@ body {
     width: 50px;
     height: 40px;
     /* background-image: url(./1685773460_art-kartinkof-club-p-shipi-piksel-art-8.png) center center / cover; */
-    border: 1px solid #000;
+    
   }
   
   .obstacle_first {
@@ -223,7 +223,7 @@ body {
     width: 50px;
     height: 40px;
     background: url(https://i.gifer.com/5Mz4.gif) center center / cover;
-    border: 1px solid #000;
+    
   }
   
   .obstacle_second {
@@ -233,7 +233,7 @@ body {
     width: 30px;
     height: 40px;
     background: url(https://i.gifer.com/5Mz4.gif) center center / cover;
-    border: 1px solid #000;
+    
   }
   
   .modal-content{
